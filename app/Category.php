@@ -10,4 +10,9 @@ class Category extends Model
     	'name',
     	'description',
     ];
+
+    //Función para realizar la relacion con la tabla products
+    public function products() {
+    	
+    }
 }
