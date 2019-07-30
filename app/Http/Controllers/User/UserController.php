@@ -16,7 +16,10 @@ class UserController extends Controller
     public function index()
     {
         $usuarios = User::all();
-        return response()->json(['data' => $usuarios], 200);
+        
+        return response()->json([
+            'data' => $usuarios
+        ], 200);
     }
 
     
@@ -29,7 +32,13 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $campos = $request->all();
+
+        $usuario = User::create($campos);
+
+        return resource()->json([
+            'data' => $usuario
+        ], 201); 
     }
 
     /**
@@ -40,7 +49,11 @@ class UserController extends Controller
      */
     public function show($id)
     {
-        //
+        $usuario = User::findOrFail($id);
+
+        return response()->json([
+            'data'=>$usuario
+        ], 200);
     }
 
     /**
