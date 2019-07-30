@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\User;
 
-use App\User;
+use App\user;
 use Illuminate\Http\Request;
 use App\Http\Controllers\APIController;
 
@@ -17,17 +17,13 @@ class UserController extends APIController
     {
         $users = User::all();
 
-        return  response()->json([
-            'data' => $users
-        ], 200);
-        
-        
+        return $this->showAll($users);
     }
 
     
 
     /**
-     * Store a newly created resource in storage.
+     * Store a newly created resource in storagclse.
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
@@ -52,9 +48,7 @@ class UserController extends APIController
 
         $user = User::create($campos); 
 
-        return response()->json([
-            'data' => $user
-        ], 201); 
+        return $this->showOne($user, 201); 
     }
 
     /**
@@ -65,11 +59,9 @@ class UserController extends APIController
      */
     public function show($id)
     {
-        $users = User::findOrFail($id);
+        $user = User::findOrFail($id);
 
-        return response()->json([
-            'data'=>$users
-        ], 200);
+        return $this->showOne($user);
     }
 
     /**
@@ -107,25 +99,19 @@ class UserController extends APIController
 
         if ($request->has('admin')) {
             if (!$user->esVerificado()) {
-                return response()->json([
-                    'error' => 'Unicamante los usuarios verificados pueden cambiar su valor de administrador', 'code' => 422
-                ], 422);
+                return $this->errorResponse('Unicamante los usuarios verificados pueden cambiar su valor de administrador', 422);
             }
 
             $user->admin = $request->admin;
         }
 
         if (!$user->isDirty()) {
-            return response()->json([
-                    'error' => 'Se debe especificar al menos un valor diferente para actualizar', 'code' => 409
-                ], 409);
+            return $this->errorResponse('Se debe especificar al menos un valor diferente para actualizar', 409);
         }
 
         $user->save();
 
-        return response()->json([
-            'data' => $user
-        ], 200);
+        return $this->showOne($user);
     }
 
     /**
@@ -140,8 +126,6 @@ class UserController extends APIController
 
         $user->delete();
 
-        return response()->json([
-            'data' => $user 
-        ],200);
+        return $this->showOne($user);
     }
 }
