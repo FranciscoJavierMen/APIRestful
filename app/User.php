@@ -15,9 +15,11 @@ class User extends Authenticatable
      *
      * @var array
      */
+
+    protected $table = 'users';
     //Constante para verificar si usuario está verificado
     const USUARIO_VERIFICADO = '1';
-    const USUARIO_NO_VERIFICADO = '0'
+    const USUARIO_NO_VERIFICADO = '0';
 
     //Constantes para verificar si usuario es administrador
     const USUARIO_ADMINISTRADOR = 'true';
