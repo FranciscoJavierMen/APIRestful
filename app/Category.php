@@ -4,9 +4,12 @@ namespace App;
 
 use App\Product;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Category extends Model
 {
+    use SoftDeletes;
+    
 	//Indicando que el campo es para una fecha
     protected $dates = ['deleted_at'];
     
