@@ -97,9 +97,31 @@ class Handler extends ExceptionHandler
         }
 
         //Excepción de método no permitido
+        if ($exception instanceof MethodNotAllowedHttpException) {
+            return $this->errorResponse('El método especificado en la petición no es válido', 405);
+        }
 
-        //Retorno de excepcion predefinida
-        return parent::render($request, $exception);
+        //Controlando excepciones generaleslizadas
+        if ($exception instanceof HttpException) {
+            return $this->errorResponse($excepcion->getMessage(), $exception->getStatusCode());
+        }
+        //Condiciónal para controlar la eliminacion de datos relacionados
+        if ($exception instanceof QueryException) {
+            //dd($exception);
+            $codigo = $exception->errorInfo[1];
+            if ($codigo == 1451) {
+                return $this->errorResponse('No se puede eliminar de forma permanente el recurso porque esta relacionado con algún otro.', 409);
+            }
+        }
+
+        //Verificar si la api se encuentra en estado de desarrollo
+        if (config('app.debug')) {
+            //Retorno de excepcion predefinida
+            return parent::render($request, $exception);
+        }
+        //Manejando errores del servidor
+        return $this->errorResponse('Algo salió mal. Intente de nuevo más tarde', 500);
+
     }
 
     /**
