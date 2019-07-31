@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\User;
 
-use App\user;
+use App\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\APIController;
 
@@ -56,10 +56,8 @@ class UserController extends APIController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(User $user)
     {
-        $user = User::findOrFail($id);
-
         return $this->showOne($user);
     }
 
@@ -70,9 +68,9 @@ class UserController extends APIController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, User $user)
     {
-        $user = User::findOrFail($id);
+        //$user = User::findOrFail($id);
         //Reglas...
         $rules = [
             'email' => 'email|unique:users,email,' . $user->id,
@@ -115,10 +113,10 @@ class UserController extends APIController
     }
 
     //Funcion para eliminar usuarios
-    public function destroy($id)
+    public function destroy(User $user)
     {
         //Encuentra el id del suario
-        $user = User::findOrFail($id);
+        //$user = User::findOrFail($id);
         //Elimina el usuario
         $user->delete();
         //Retorna el usuario eliminado
