@@ -28,6 +28,7 @@ Route::resource('products', 'Product\ProductController', ['only' => ['index', 's
 * Ruta para Tranzactions
 */
 Route::resource('transactions', 'Transaction\TransactionController', ['only' => ['index', 'show']]);
+Route::resource('transactions.categories', 'Transaction\TransactionCategoryController', ['only' => ['index']]);
 /*
 * Ruta para Seller
 */
