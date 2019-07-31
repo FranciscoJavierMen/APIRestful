@@ -95,6 +95,10 @@ class Handler extends ExceptionHandler
         if ($exception instanceof NotFoundHttpException) {
             return $this->errorResponse('No se encontró la url especificada',404);
         }
+
+        //Excepción de método no permitido
+
+        //Retorno de excepcion predefinida
         return parent::render($request, $exception);
     }
 

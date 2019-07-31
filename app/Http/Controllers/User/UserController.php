@@ -20,7 +20,6 @@ class UserController extends APIController
         return $this->showAll($users);
     }
 
-    
 
     /**
      * Store a newly created resource in storagclse.
@@ -37,7 +36,7 @@ class UserController extends APIController
             'email' => 'required|email|unique:users',
             'password' => 'required|min:6|confirmed'
         ];
-
+        //Validación de las reglas y request
         $this->validate($request, $rules);
 
         $campos = $request->all();//Todos los campos
@@ -46,9 +45,9 @@ class UserController extends APIController
         $campos['verification_token'] = User::generarVerificationToken();//generar token
         $campos['admin'] = User::USUARIO_REGULAR;
 
-        $user = User::create($campos); 
+        $user = User::create($campos); //Creación del usuario
 
-        return $this->showOne($user, 201); 
+        return $this->showOne($user, 201); //Muestra el usuario recién creado
     }
 
     /**
@@ -81,22 +80,23 @@ class UserController extends APIController
             'admin'=> 'in:' . User::USUARIO_ADMINISTRADOR .  ',' . User::USUARIO_REGULAR,
         ];
 
-        $this->validate($request, $rules);
+        $this->validate($request, $rules);//Vakidación de las reglas
 
+        //Actualiza el nombre
         if ($request->has('name')) {
             $user->name = $request->name;
         }
-
+        //Actualiza el imail si este es diferente al existente
         if ($request->has('email') && $user->email != $request->email) {
             $user->verified = User::USUARIO_NO_VERIFICADO;
             $user->verification_token = User::generarVerificationToken();
             $user->email = $request->email;
         }
-
+        //Actualiza la contraseña
         if ($request->has('password')) {
             $user->password = bcrypt($request->passwowrd);
         }
-
+        //Actualiza el estado del usuario
         if ($request->has('admin')) {
             if (!$user->esVerificado()) {
                 return $this->errorResponse('Unicamante los usuarios verificados pueden cambiar su valor de administrador', 422);
@@ -104,7 +104,7 @@ class UserController extends APIController
 
             $user->admin = $request->admin;
         }
-
+        //Si no sse especifican datos se muestra un error
         if (!$user->isDirty()) {
             return $this->errorResponse('Se debe especificar al menos un valor diferente para actualizar', 409);
         }
@@ -114,18 +114,14 @@ class UserController extends APIController
         return $this->showOne($user);
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+    //Funcion para eliminar usuarios
     public function destroy($id)
     {
+        //Encuentra el id del suario
         $user = User::findOrFail($id);
-
+        //Elimina el usuario
         $user->delete();
-
+        //Retorna el usuario eliminado
         return $this->showOne($user);
     }
 }
