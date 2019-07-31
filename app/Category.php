@@ -7,6 +7,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class Category extends Model
 {
+	//Indicando que el campo es para una fecha
+    protected $dates = ['deleted_at'];
+    
     protected $fillable = [
     	'name',
     	'description',

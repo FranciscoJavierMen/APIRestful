@@ -8,6 +8,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class Transaction extends Model
 {
+
+    //Indicando que el campo es para una fecha
+    protected $dates = ['deleted_at'];
+    
     protected $fillable = [
     	'quantity',
     	'buyer_id',
