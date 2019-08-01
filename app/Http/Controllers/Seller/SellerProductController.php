@@ -7,6 +7,7 @@ use App\Seller;
 use App\Product;
 use Illuminate\Http\Request;
 use App\Http\Controllers\APIController;
+use Illuminate\Support\Facades\Storage;
 use Symfony\Component\HttpKernel\Exception\HttpException;
 
 class SellerProductController extends APIController
@@ -88,6 +89,8 @@ class SellerProductController extends APIController
     public function destroy(Seller $seller, Product $product)
     {
         $this->verificarVendedor($seller, $product);
+
+        Storage::delete($product->image);
 
         $product->delete();
 
