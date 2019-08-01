@@ -18,6 +18,11 @@ class Category extends Model
     	'description',
     ];
 
+    //Oculta la tabla pivote
+    protected $hidden = [
+        'pivot'
+    ];
+
     //Función para realizar la relacion con la tabla products
     public function products() {
     	return $this->belongsToMany(Product::class);

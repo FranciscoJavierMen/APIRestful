@@ -26,6 +26,7 @@ class Product extends Model
     	'image',
     	'seller_id',
     ];
+    //Oculta la tabla pivote
     protected $hidden = [
         'pivot'
     ];
