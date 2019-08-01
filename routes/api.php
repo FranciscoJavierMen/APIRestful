@@ -32,6 +32,7 @@ Route::resource('transactions.sellers', 'Transaction\TransactionSellerController
 * Ruta para Seller
 */
 Route::resource('sellers', 'Seller\SellerController', ['only' => ['index', 'show']]);
+Route::resource('sellers.transactions', 'Seller\SellerTransactionController', ['only' => ['index']]);
 /*
 * Ruta para Users
 */
