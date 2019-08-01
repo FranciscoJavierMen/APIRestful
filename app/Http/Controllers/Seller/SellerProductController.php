@@ -75,6 +75,13 @@ class SellerProductController extends APIController
             }
         }
 
+        //Actualizando la imagen
+        if ($request->hasFile('image')) {
+            Storage::delete($product->image);
+
+            $product->image = $request->image->store('');
+        }
+
         if ($product->isClean()) {
             return $this->errorResponse('Se debe especificar al menos un valor diferente para actualizar', 422);
         }
@@ -89,7 +96,7 @@ class SellerProductController extends APIController
     public function destroy(Seller $seller, Product $product)
     {
         $this->verificarVendedor($seller, $product);
-
+        //Eliminando imagen
         Storage::delete($product->image);
 
         $product->delete();
@@ -103,7 +110,5 @@ class SellerProductController extends APIController
         if ($seller->id != $product->seller_id) {
             throw new HttpException(422, 'El vendedor especificado no es el vendedor real del producto');
         }
-
-
     }
 }
