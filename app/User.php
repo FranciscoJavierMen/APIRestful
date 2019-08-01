@@ -39,6 +39,16 @@ class User extends Authenticatable
         'admin',
     ];
 
+    /**
+     * The attributes that should be hidden for arrays.
+     *
+     * @var array
+     */
+    protected $hidden = [
+        'password', 
+        'remember_token',
+        //'verification_token',
+    ];
     //Mutador para transformar el nombre a minusculas
     public function setNameAttribute($value) {
         $this->attributes['name'] = strtolower($value);
@@ -56,16 +66,6 @@ class User extends Authenticatable
 
 
 
-    /**
-     * The attributes that should be hidden for arrays.
-     *
-     * @var array
-     */
-    protected $hidden = [
-        'password', 
-        'remember_token',
-        'verification_token',
-    ];
 
     //Funcion para verificar si el usuario está verificado
     public function esVerificado() {

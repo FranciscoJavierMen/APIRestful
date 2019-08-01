@@ -33,4 +33,11 @@ trait ApiResponser
 			'data' => $instance
 		], $code);
 	}
+	//Función para retornar mensajes simples
+	protected function showMessage($message, $code = 200)
+	{
+		return $this->successResponse([
+			'data' => $message
+		], $code);
+	}
 }
