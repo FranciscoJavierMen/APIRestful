@@ -24,4 +24,20 @@ class SellerTransformer extends TransformerAbstract
             'fechaEliminacion' => isset($seller->deleted_at) ? (string) $seller->deleted_at : null,
         ];
     }
+
+    //Función para mapear los valores originales de la bd
+    public static function originalAttribute($index)
+    {
+        $attributes = [
+            'identificador' => 'id',
+            'nombre' => 'name',
+            'correo' => 'email',  
+            'esVerificado' => 'verified',
+            'fechaCreacion' => 'created_at',
+            'fechaActualizacion' => 'updated_at',
+            'fechaEliminacion' => 'deleted_at',
+        ];
+
+        return isset($attributes[$index]) ? $attributes[$index] : null;
+    }
 }
