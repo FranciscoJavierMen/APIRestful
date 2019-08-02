@@ -22,16 +22,23 @@ trait ApiResponser
 	//Función para retornar todos los datos
 	protected function showAll(Collection $collection, $code = 200)
 	{
-		return $this->successResponse([
-			'data' => $collection
-		], $code);
+		if ($collection->isEmpty()) {
+			return $this->successResponse(['data' => $collection], $code);
+		}
+
+		$transformer = $collection->first()->transformer;
+		$collection = $this->transformData($collection, $transformer);
+
+		return $this->successResponse($collection, $code);
 	}
 	//Funcion para retornar un solo dato
 	protected function showOne(Model $instance, $code = 200)
 	{
-		return $this->successResponse([
-			'data' => $instance
-		], $code);
+		$transformer = $instance->first()->transformer;
+		$instance = $this->transformData($instance, $transformer);
+
+
+		return $this->successResponse($instance, $code);
 	}
 	//Función para retornar mensajes simples
 	protected function showMessage($message, $code = 200)
@@ -40,4 +47,13 @@ trait ApiResponser
 			'data' => $message
 		], $code);
 	}
+
+	//Funcion para transformar los datos
+	protected function transformData($data, $transformer)
+	{
+		$transformation = fractal($data, new $transformer);
+
+		return $transformation->toArray();	
+	}
+
 }
