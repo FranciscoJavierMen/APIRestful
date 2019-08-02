@@ -47,7 +47,7 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 
         'remember_token',
-        //'verification_token',
+        'verification_token',
     ];
     //Mutador para transformar el nombre a minusculas
     public function setNameAttribute($value) {
