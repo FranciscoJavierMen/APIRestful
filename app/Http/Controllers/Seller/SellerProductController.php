@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Http\Controllers\Seller;
+namespace APIRestful\Http\Controllers\Seller;
 
-use App\User;
-use App\Seller;
-use App\Product;
+use APIRestful\User;
+use APIRestful\Seller;
+use APIRestful\Product;
 use Illuminate\Http\Request;
-use App\Http\Controllers\APIController;
+use APIRestful\Http\Controllers\APIController;
 use Illuminate\Support\Facades\Storage;
 use Symfony\Component\HttpKernel\Exception\HttpException;
 

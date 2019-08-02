@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Mail;
+namespace APIRestful\Mail;
 
-use App\User;
+use APIRestful\User;
 use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;

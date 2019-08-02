@@ -1,9 +1,9 @@
 <?php
 
-namespace App;
+namespace APIRestful;
 
-use App\Transaction;
-use App\Scopes\BuyerScope;
+use APIRestful\Transaction;
+use APIRestful\Scopes\BuyerScope;
 
 
 class Buyer extends User

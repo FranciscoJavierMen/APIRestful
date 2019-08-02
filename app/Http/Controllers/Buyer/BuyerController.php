@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Controllers\Buyer;
+namespace APIRestful\Http\Controllers\Buyer;
 
-use App\Buyer;
+use APIRestful\Buyer;
 use Illuminate\Http\Request;
-use App\Http\Controllers\APIController;
+use APIRestful\Http\Controllers\APIController;
 
 class BuyerController extends APIController
 {

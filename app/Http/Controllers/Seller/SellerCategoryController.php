@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Controllers\Seller;
+namespace APIRestful\Http\Controllers\Seller;
 
-use App\Seller;
+use APIRestful\Seller;
 use Illuminate\Http\Request;
-use App\Http\Controllers\APIController;
+use APIRestful\Http\Controllers\APIController;
 
 class SellerCategoryController extends APIController
 {

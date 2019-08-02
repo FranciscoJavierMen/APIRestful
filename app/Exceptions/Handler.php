@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Exceptions;
+namespace APIRestful\Exceptions;
 
 use Exception;
-use App\Traits\ApiResponser;
+use APIRestful\Traits\ApiResponser;
 use Asm89\Stack\CorsService;
 use Illuminate\Database\QueryException;
 use Illuminate\Auth\AuthenticationException;

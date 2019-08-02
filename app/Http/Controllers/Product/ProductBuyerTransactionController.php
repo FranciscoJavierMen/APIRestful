@@ -1,13 +1,13 @@
 <?php
 
-namespace App\Http\Controllers\Product;
+namespace APIRestful\Http\Controllers\Product;
 
-use App\User;
-use App\Product;
-use App\Transaction;
+use APIRestful\User;
+use APIRestful\Product;
+use APIRestful\Transaction;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use App\Http\Controllers\APIController;
+use APIRestful\Http\Controllers\APIController;
 
 class ProductBuyerTransactionController extends APIController
 {

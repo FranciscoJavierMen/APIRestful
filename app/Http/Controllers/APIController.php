@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace APIRestful\Http\Controllers;
 
-use App\Traits\ApiResponser;
+use APIRestful\Traits\ApiResponser;
 use Illuminate\Http\Request;
 
 class APIController extends Controller

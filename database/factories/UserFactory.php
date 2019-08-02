@@ -1,10 +1,10 @@
 <?php
 
-use App\User;
-use App\Seller;
-use App\Product;
-use App\Category;
-use App\Transaction;
+use APIRestful\User;
+use APIRestful\Seller;
+use APIRestful\Product;
+use APIRestful\Category;
+use APIRestful\Transaction;
 
 /*
 |--------------------------------------------------------------------------

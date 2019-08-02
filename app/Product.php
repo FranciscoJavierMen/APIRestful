@@ -1,12 +1,12 @@
 <?php
 
-namespace App;
+namespace APIRestful;
 
-use App\Seller;
-use App\Category;
-use App\Transaction;
+use APIRestful\Seller;
+use APIRestful\Category;
+use APIRestful\Transaction;
 use Illuminate\Database\Eloquent\Model;
-use App\Transformers\ProductTransformer;
+use APIRestful\Transformers\ProductTransformer;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Product extends Model

@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace APIRestful;
 
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\SoftDeletes;

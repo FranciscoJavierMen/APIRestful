@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Http\Controllers\User;
+namespace APIRestful\Http\Controllers\User;
 
-use App\User;
-use App\Mail\UserCreated;
+use APIRestful\User;
+use APIRestful\Mail\UserCreated;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
-use App\Http\Controllers\APIController;
+use APIRestful\Http\Controllers\APIController;
 
 class UserController extends APIController
 {

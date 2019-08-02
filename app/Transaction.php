@@ -1,9 +1,9 @@
 <?php
 
-namespace App;
+namespace APIRestful;
 
-use App\Buyer;
-use App\Product;
+use APIRestful\Buyer;
+use APIRestful\Product;
 use Illuminate\Database\Eloquent\Model;
 
 class Transaction extends Model

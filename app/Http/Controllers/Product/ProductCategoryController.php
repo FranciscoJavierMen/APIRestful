@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Http\Controllers\Product;
+namespace APIRestful\Http\Controllers\Product;
 
-use App\Product;
-use App\Category;
+use APIRestful\Product;
+use APIRestful\Category;
 use Illuminate\Http\Request;
-use App\Http\Controllers\APIController;
+use APIRestful\Http\Controllers\APIController;
 
 class ProductCategoryController extends APIController
 {

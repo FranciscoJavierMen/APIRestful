@@ -1,8 +1,8 @@
 <?php
 
-namespace App;
+namespace APIRestful;
 
-use App\Product;
+use APIRestful\Product;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 

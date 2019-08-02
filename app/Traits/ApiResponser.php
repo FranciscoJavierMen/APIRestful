@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Traits;
+namespace APIRestful\Traits;
 
 use Illuminate\Support\Collection;
 use Illuminate\Database\Eloquent\Model;

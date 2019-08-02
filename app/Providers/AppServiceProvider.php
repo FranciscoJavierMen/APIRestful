@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Providers;
+namespace APIRestful\Providers;
 
-use App\User;
-use App\Product;
-use App\Mail\UserCreated;
-use App\Mail\UserMailChanged;
+use APIRestful\User;
+use APIRestful\Product;
+use APIRestful\Mail\UserCreated;
+use APIRestful\Mail\UserMailChanged;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\ServiceProvider;
