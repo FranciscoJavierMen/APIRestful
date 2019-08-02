@@ -5,9 +5,16 @@ namespace APIRestful;
 use APIRestful\Buyer;
 use APIRestful\Product;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
+use APIRestful\Transformers\TransactionTransformer;
 
 class Transaction extends Model
 {
+
+    use SoftDeletes;
+
+    //Relacionando modelos con la transformación
+    public $transformer = TransactionTransformer::class;
 
     //Indicando que el campo es para una fecha
     protected $dates = ['deleted_at'];

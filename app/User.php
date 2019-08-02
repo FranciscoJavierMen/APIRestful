@@ -3,6 +3,7 @@
 namespace APIRestful;
 
 use Illuminate\Notifications\Notifiable;
+use APIRestful\Transformers\UserTransformer;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -29,6 +30,9 @@ class User extends Authenticatable
     //Constantes para verificar si usuario es administrador
     const USUARIO_ADMINISTRADOR = 'true';
     const USUARIO_REGULAR = 'false';
+
+    //Relacionando modelos con la transformación
+    public $transformer = UserTransformer::class;
 
     protected $fillable = [
         'name',
@@ -63,8 +67,6 @@ class User extends Authenticatable
     public function setEmailAttribute($value) {
         $this->attributes['email'] = strtolower($value);
     }
-
-
 
 
     //Funcion para verificar si el usuario está verificado

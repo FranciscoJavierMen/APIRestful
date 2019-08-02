@@ -13,10 +13,13 @@ class Product extends Model
 {
     use SoftDeletes;
 
+    //Relacionando modelos con la transformación
+    public $transformer = ProductTransformer::class;
+
+
 	const PRODUCTO_DISPONIBLE = 'disponible';
 	const PRODUCTO_NO_DISPONIBLE = 'no disponible';
 
-    public $transformer = ProductTransformer::class;
     protected $dates = ['deleted_at'];
     protected $fillable = [
     	'name',

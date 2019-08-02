@@ -3,10 +3,15 @@
 namespace APIRestful;
 
 use APIRestful\Scopes\SellerScope;
+use APIRestful\Transformers\SellerTransformer;
 
 
 class Seller extends User
 {
+
+	//Relacionando modelos con la transformación
+    public $transformer = SellerTransformer::class;
+
 	//Funcion ejecutada al inicio del modelo
 	//para ejecutar el scope
 	protected static function boot()
