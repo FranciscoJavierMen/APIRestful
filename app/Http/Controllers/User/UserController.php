@@ -3,13 +3,22 @@
 namespace APIRestful\Http\Controllers\User;
 
 use APIRestful\User;
-use APIRestful\Mail\UserCreated;
 use Illuminate\Http\Request;
+use APIRestful\Mail\UserCreated;
 use Illuminate\Support\Facades\Mail;
+use APIRestful\Transformers\UserTransformer;
 use APIRestful\Http\Controllers\APIController;
 
 class UserController extends APIController
 {
+
+    public function __construct()
+    {
+        parent::__construct();
+
+        $this->middleware('transform.input' . UserTransformer::class)->only(['store', 'update']);
+    }
+
     /**
      * Display a listing of the resource.
      *

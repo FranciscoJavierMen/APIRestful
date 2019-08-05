@@ -62,6 +62,7 @@ class Kernel extends HttpKernel
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
         'signature' => \APIRestful\Http\Middleware\SignatureMiddleware::class,
+        'transform.input' => \APIRestful\Http\Middleware\TransformInput::class,
     ];
 
     /**

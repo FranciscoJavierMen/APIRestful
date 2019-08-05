@@ -5,9 +5,17 @@ namespace APIRestful\Http\Controllers\Category;
 use APIRestful\Category;
 use Illuminate\Http\Request;
 use APIRestful\Http\Controllers\APIController;
+use APIRestful\Transformers\CategoryTransformer;
 
 class CategoryController extends APIController
 {
+
+    public function __construct()
+    {
+        parent::__construct();
+
+        $this->middleware('transform.input' . CategoryTransformer::class)->only(['store', 'update']);
+    }
     /**
      * Display a listing of the resource.
      *

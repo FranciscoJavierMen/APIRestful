@@ -8,9 +8,18 @@ use APIRestful\Transaction;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use APIRestful\Http\Controllers\APIController;
+use APIRestful\Transformers\TransactionTransformer;
 
 class ProductBuyerTransactionController extends APIController
 {
+
+    public function __construct()
+    {
+        parent::__construct();
+
+        $this->middleware('transform.input' . TransactionTransformer::class)->only(['store']);
+    }
+
 
     public function store(Request $request, Product $product, User $buyer)
     {

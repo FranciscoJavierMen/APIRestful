@@ -1,17 +1,25 @@
 <?php
 
-namespace APIRestful\Http\Controllers\Seller;
+namespace Http\Controllers\Seller;
 
 use APIRestful\User;
 use APIRestful\Seller;
 use APIRestful\Product;
 use Illuminate\Http\Request;
-use APIRestful\Http\Controllers\APIController;
 use Illuminate\Support\Facades\Storage;
+use APIRestful\Http\Controllers\APIController;
+use APIRestful\Transformers\ProductTransformer;
 use Symfony\Component\HttpKernel\Exception\HttpException;
 
 class SellerProductController extends APIController
 {
+
+    public function __construct()
+    {
+        parent::__construct();
+
+        $this->middleware('transform.input' . ProductTransformer::class)->only(['store', 'update']);
+    }
     /**
      * Display a listing of the resource.
      *
@@ -88,7 +96,7 @@ class SellerProductController extends APIController
 
         $product->save();
 
-        return $this->showone($product);
+        return $this->showOne($product);
 
     }
 
@@ -101,7 +109,7 @@ class SellerProductController extends APIController
 
         $product->delete();
 
-        return $this->showone($product);
+        return $this->showOne($product);
     }
 
     //Función que verifica si es el vendedor del producto actual
