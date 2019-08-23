@@ -8,6 +8,11 @@ use APIRestful\Http\Controllers\APIController;
 
 class CategoryProductController extends APIController
 {
+    public function __construct()
+    {
+        $this->middleware('client.credentials')->only(['index']);
+
+    }
     /**
      * Display a listing of the resource.
      *

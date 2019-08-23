@@ -59,6 +59,9 @@ class Handler extends ExceptionHandler
      */
     protected function unauthenticated($request, AuthenticationException $exception)
     {
+        if ($this->isFrontend($request)) {
+            return redirect()->guest('login');
+        }
         return $this->errorResponse('No autenticado.', 401);        
     }
 
@@ -114,6 +117,11 @@ class Handler extends ExceptionHandler
             }
         }
 
+        #Condición para error CSRF
+        if ($exception instanceof TokenMismatchException) {
+            return redirect()->back()->withInput($request->input());
+        }
+
         //Verificar si la api se encuentra en estado de desarrollo
         if (config('app.debug')) {
             //Retorno de excepcion predefinida
@@ -122,6 +130,10 @@ class Handler extends ExceptionHandler
         //Manejando errores del servidor
         return $this->errorResponse('Algo salió mal. Intente de nuevo más tarde', 500);
 
+    }
+
+    private function isFrontend($request){
+        return $request->acceptsHtml() && collect($request->route()->middleware())->contains('web');
     }
 
     /**
@@ -134,6 +146,13 @@ class Handler extends ExceptionHandler
     protected function convertValidationExceptionToResponse(ValidationException $e, $request)
     {
         $errors = $e->validator->errors()->getMessage();
+
+        if ($this->isFronten($request)) {
+            return $request->ajax() ? response()->json($errors, 422) : redirect()
+                ->back()
+                ->withInput($request->input())
+                ->withErrors($errors);
+        }
 
         return $this->errorResponse($errors, 422);
     }

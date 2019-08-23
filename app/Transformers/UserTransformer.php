@@ -49,4 +49,21 @@ class UserTransformer extends TransformerAbstract
 
         return isset($attributes[$index]) ? $attributes[$index] : null;
     }
+
+    //Función para mapear los valores originales de la bd
+    public static function transformAttribute($index)
+    {
+        $attributes = [
+            'id' => 'identificador',
+            'name' => 'nombre',
+            'email' => 'correo',  
+            'verified' => 'esVerificado',
+            'admin' => 'esAdministrador',
+            'created_at' => 'fechaCreacion',
+            'update_at' => 'fechaActualizacion',
+            'delete_at' => 'fechaEliminacion',
+        ];
+
+        return isset($attributes[$index]) ? $attributes[$index] : null;
+    }
 }

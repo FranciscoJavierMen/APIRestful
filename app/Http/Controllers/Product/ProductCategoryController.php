@@ -9,6 +9,10 @@ use APIRestful\Http\Controllers\APIController;
 
 class ProductCategoryController extends APIController
 {
+    public function __construct()
+    {
+        $this->middleware('client.credentials')->only(['index']);
+    }
 
     public function index(Product $product)
     {

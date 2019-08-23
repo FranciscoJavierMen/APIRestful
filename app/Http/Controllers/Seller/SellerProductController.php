@@ -1,6 +1,6 @@
 <?php
 
-namespace Http\Controllers\Seller;
+namespace APIRestful\Http\Controllers\Seller;
 
 use APIRestful\User;
 use APIRestful\Seller;

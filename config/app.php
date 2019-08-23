@@ -162,12 +162,15 @@ return [
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
 
+
         /*
          * Package Service Providers...
          */
 
         //Spatie provider
         Spatie\Fractal\FractalServiceProvider::class,
+        //Passport provider
+        Laravel\Passport\PassportServiceProvider::class,
 
         /*
          * Application Service Providers...

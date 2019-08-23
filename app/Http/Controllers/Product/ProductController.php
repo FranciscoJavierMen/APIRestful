@@ -8,6 +8,12 @@ use APIRestful\Http\Controllers\APIController;
 
 class ProductController extends APIController
 {
+
+    public function __construct()
+    {
+        $this->middleware('client.credentials')->only(['index', 'show']);
+
+    }
     //Función para mostrar todas las instancias de Product
     public function index()
     {
